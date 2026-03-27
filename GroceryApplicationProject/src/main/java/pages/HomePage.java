@@ -5,8 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.PageUtility;
+import utilities.WaitUtility;
+
 public class HomePage {
 	public WebDriver driver;
+	WaitUtility wait =new WaitUtility();
+	PageUtility page = new PageUtility();
 
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
@@ -28,20 +33,26 @@ public class HomePage {
 	WebElement dashboardtile;
 	
 
-	public void clickAdminButton() {
-		adminbutton.click();
+	public HomePage clickAdminButton() {
+		wait.waitUntilElementToBeClickable(driver, adminbutton);
+		//adminbutton.click();
+		page.clickUsingJsExecutor(driver, adminbutton);
+		return this;
 	}
 
-	public void clickLogOutButton() {
+	public LoginPage clickLogOutButton() {
 		logoutbutton.click();
+		return new LoginPage(driver);
 	}
 
-	public void clickOnAdminUsersMoreInfoButton() {
+	public AdminUsersPage clickOnAdminUsersMoreInfoButton() {
 		adminusersmoreinfo.click();
+		return new AdminUsersPage(driver);
 	}
 
-	public void clickOnMangeNewsMoreInfoButton() {
+	public ManageNewsPage clickOnMangeNewsMoreInfoButton() {
 		managenewsmoreinfo.click();
+		return new ManageNewsPage(driver);
 	}
 	public String getApplicationTitle() {
 		return applicationtitle.getText();

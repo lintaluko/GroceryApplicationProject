@@ -10,5 +10,6 @@
 		  
 	  </class>
     </classes>
-  </test> <!-- Test -->
+	 </test>
+  
 </suite> <!-- Suite -->

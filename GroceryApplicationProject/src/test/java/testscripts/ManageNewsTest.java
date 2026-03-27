@@ -6,29 +6,28 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationcore.Base;
+import constant.Constants;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageNewsPage;
 import utilities.ExcelUtility;
 
 public class ManageNewsTest extends Base {
+	HomePage homepage;
+	ManageNewsPage managenews;
+	
 	@Test(description = "validating if user is able to add a new news")
 	public void verifyIfUserIsAbleToAddNews() throws IOException {
 		String username = ExcelUtility.readStringData(0, 0, "LoginPage");
 		String password = ExcelUtility.readStringData(0, 1, "LoginPage");
 		LoginPage login = new LoginPage(driver);
-		login.enterUserNameOnUserNameField(username);
-		login.enterPasswordOnPasswordField(password);
-		login.clickOnSigninButton();
-		HomePage homepage = new HomePage(driver);
-		homepage.clickOnMangeNewsMoreInfoButton();
+		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password);
+		homepage = login.clickOnSigninButton(); // control shifting to homepage
+		managenews=homepage.clickOnMangeNewsMoreInfoButton();
 		String news = ExcelUtility.readStringData(0, 0, "ManageNewsPage");
-		ManageNewsPage managenews = new ManageNewsPage(driver);
-		managenews.clickOnNewsNewButton();
-		managenews.enterNewNewsInTheBox(news);
-		managenews.clickOnSaveButton();
+		managenews.clickOnNewsNewButton().enterNewNewsInTheBox(news).clickOnSaveButton();
 		boolean newssucess=managenews.isNewsSuccess();
-		Assert.assertTrue(newssucess,"user was unable to create new news");
+		Assert.assertTrue(newssucess,Constants.ADDNEWNEWSERROR);
 	}
 
 	@Test(description = "Validating if user is able to search a news")
@@ -36,18 +35,13 @@ public class ManageNewsTest extends Base {
 		String username = ExcelUtility.readStringData(0, 0, "LoginPage");
 		String password = ExcelUtility.readStringData(0, 1, "LoginPage");
 		LoginPage login = new LoginPage(driver);
-		login.enterUserNameOnUserNameField(username);
-		login.enterPasswordOnPasswordField(password);
-		login.clickOnSigninButton();
-		HomePage homepage = new HomePage(driver);
+		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password);
+		homepage = login.clickOnSigninButton(); // control shifting to homepage
 		homepage.clickOnMangeNewsMoreInfoButton();
 		String news = ExcelUtility.readStringData(0, 0, "ManageNewsPage");
-		ManageNewsPage managenews = new ManageNewsPage(driver);
-		managenews.clickOnNewsSearchButton();
-		managenews.enterNewsTitleInBox(news);
-		managenews.clickOnSearchAfterInputingValues();
+		managenews.clickOnNewsSearchButton().enterNewsTitleInBox(news).clickOnSearchAfterInputingValues();
 		boolean successsearch=managenews.isNewsSearchSucess();
-		Assert.assertTrue(successsearch, "user was unable to search news");
+		Assert.assertTrue(successsearch,Constants.SEARCHNEWSERROR);
 
 	}
 
@@ -56,15 +50,12 @@ public class ManageNewsTest extends Base {
 		String username = ExcelUtility.readStringData(0, 0, "LoginPage");
 		String password = ExcelUtility.readStringData(0, 1, "LoginPage");
 		LoginPage login = new LoginPage(driver);
-		login.enterUserNameOnUserNameField(username);
-		login.enterPasswordOnPasswordField(password);
-		login.clickOnSigninButton();
-		HomePage homepage = new HomePage(driver);
+		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password);
+		homepage = login.clickOnSigninButton(); // control shifting to homepage
 		homepage.clickOnMangeNewsMoreInfoButton();
-		ManageNewsPage managenews = new ManageNewsPage(driver);
 		managenews.clickOnNewsResetButton();
 		boolean successreset= managenews.isNewsResetSucess();
-		Assert.assertTrue(successreset, "user was unsuccessfull in resetting");
+		Assert.assertTrue(successreset, Constants.RESETMANAGENEWSERROR);
 		
 		
 	}

@@ -1,7 +1,9 @@
 package automationcore;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,14 +14,20 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
+import constant.Constants;
 import utilities.ScreenshotUtility;
 
 public class Base {
+	Properties prop;
+	FileInputStream fs;
 	public WebDriver driver; // predefined interface
 
 	@BeforeMethod(alwaysRun=true)
 	@Parameters("browser")
 			public void browserLaunch(String browser) throws Exception {
+		prop = new Properties();
+		fs =new FileInputStream(Constants.CONFIGFILE);
+		prop.load(fs);
 			if(browser.equalsIgnoreCase("Chrome")) { //no case sensitivity
 				driver = new ChromeDriver();
 	}else if(browser.equalsIgnoreCase("FireFox")) {
@@ -30,7 +38,7 @@ public class Base {
 	{
 		throw new Exception("invalid browser");
 	}
-		driver.get("https://groceryapp.uniqassosiates.com/admin/login");
+		driver.get(prop.getProperty("url"));
 	
 				driver.manage().window().maximize();
 				driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); //implicit wait
