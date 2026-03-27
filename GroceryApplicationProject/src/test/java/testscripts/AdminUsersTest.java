@@ -41,10 +41,9 @@ public class AdminUsersTest extends Base {
 		String username = ExcelUtility.readStringData(0, 0, "LoginPage");
 		String password = ExcelUtility.readStringData(0, 1, "LoginPage");
 		LoginPage login = new LoginPage(driver);
-		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password).clickOnSigninButton();
+		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password);
 		homepage = login.clickOnSigninButton();
-		HomePage homepage = new HomePage(driver);
-		homepage.clickOnAdminUsersMoreInfoButton();
+		adminuserspage=homepage.clickOnAdminUsersMoreInfoButton();
 		FakerUtility faker = new FakerUtility();
 		String newusername = faker.createRandomUserName();
 		String usertype = ExcelUtility.readStringData(0, 2, "AdminUsersPage");
@@ -55,14 +54,14 @@ public class AdminUsersTest extends Base {
 
 	}
 
-	@Test(description = "validaring if user is able to reset")
+	@Test(description = "validating if user is able to reset")
 	public void verifyIfUserIsAbleToReset() throws IOException {
 		String username = ExcelUtility.readStringData(0, 0, "LoginPage");
 		String password = ExcelUtility.readStringData(0, 1, "LoginPage");
 		LoginPage login = new LoginPage(driver);
 		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password).clickOnSigninButton();
 		homepage = login.clickOnSigninButton();
-		homepage.clickOnAdminUsersMoreInfoButton();
+		adminuserspage=homepage.clickOnAdminUsersMoreInfoButton();
 		adminuserspage.clickOnResetButton();
 		boolean resetsucess = adminuserspage.isresetSuccess();
 		Assert.assertTrue(resetsucess, Constants.RESETADMINUSERERROR);

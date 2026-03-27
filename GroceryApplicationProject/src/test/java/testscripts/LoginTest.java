@@ -31,7 +31,8 @@ public class LoginTest extends Base {
 		String username = ExcelUtility.readStringData(2, 0, "LoginPage");
 		String password = ExcelUtility.readStringData(2, 1, "LoginPage");
 		LoginPage login = new LoginPage(driver);
-		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password).clickOnSigninButton(); //same page
+		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password).clickOnSigninButton();//same page
+		
 		String actual = login.getApplicationTitle();
 		String expected = "7rmart supermarket";
 		Assert.assertEquals(actual, expected, Constants.INVALIDPASSWORDERROR);

@@ -46,6 +46,7 @@ public class HomePage {
 	}
 
 	public AdminUsersPage clickOnAdminUsersMoreInfoButton() {
+		wait.waitUntilElementToBeClickable(driver, adminusersmoreinfo);
 		adminusersmoreinfo.click();
 		return new AdminUsersPage(driver);
 	}

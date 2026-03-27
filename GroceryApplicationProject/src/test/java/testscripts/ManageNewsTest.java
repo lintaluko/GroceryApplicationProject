@@ -37,7 +37,7 @@ public class ManageNewsTest extends Base {
 		LoginPage login = new LoginPage(driver);
 		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password);
 		homepage = login.clickOnSigninButton(); // control shifting to homepage
-		homepage.clickOnMangeNewsMoreInfoButton();
+		managenews=homepage.clickOnMangeNewsMoreInfoButton();
 		String news = ExcelUtility.readStringData(0, 0, "ManageNewsPage");
 		managenews.clickOnNewsSearchButton().enterNewsTitleInBox(news).clickOnSearchAfterInputingValues();
 		boolean successsearch=managenews.isNewsSearchSucess();
@@ -52,7 +52,7 @@ public class ManageNewsTest extends Base {
 		LoginPage login = new LoginPage(driver);
 		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password);
 		homepage = login.clickOnSigninButton(); // control shifting to homepage
-		homepage.clickOnMangeNewsMoreInfoButton();
+		managenews=homepage.clickOnMangeNewsMoreInfoButton();
 		managenews.clickOnNewsResetButton();
 		boolean successreset= managenews.isNewsResetSucess();
 		Assert.assertTrue(successreset, Constants.RESETMANAGENEWSERROR);
