@@ -21,7 +21,7 @@ public void verifyUserIsAbleToSuccessfullyLogOut() throws IOException {
 		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password);
 		homepage= login.clickOnSigninButton();
 		homepage.clickAdminButton();
-		homepage.clickLogOutButton();
+		login=homepage.clickLogOutButton();
 		String actual=homepage.getApplicationTitle();
 		String expected ="7rmart supermarket";
 		Assert.assertEquals(actual,expected,Constants.LOGOUTERROR);

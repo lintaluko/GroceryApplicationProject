@@ -7,7 +7,7 @@
 	  
     <classes>
       
-      <class name="testscripts.AdminUsersTest"><methods><include name="verifyIfUserIsAbleToSearchAUser"></include></methods>
+      <class name="testscripts.HomeTest">
 	  </class>
     </classes>
   </test> <!-- Test -->
