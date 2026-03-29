@@ -7,7 +7,7 @@
 	  
     <classes>
       
-      <class name="testscripts.HomeTest">
+      <class name="testscripts.ManageNewsTest"><methods><include name="verifyUserISAbleToSearchNews"></include></methods>
 	  </class>
     </classes>
   </test> <!-- Test -->

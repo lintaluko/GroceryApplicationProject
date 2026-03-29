@@ -20,7 +20,7 @@ public class ManageNewsPage {
 	WebElement newsfield;
 	@FindBy(xpath = "//button[text()='Save']")
 	WebElement newssavebutton;
-	@FindBy(xpath = "//a[@class='btn btn-rounded btn-primary' and @href='javascript:ManageNewsPage(0)']")
+	@FindBy(xpath = "//a[@class='btn btn-rounded btn-primary' and @onclick='click_button(2)']")
 	WebElement newssearchbutton;
 	@FindBy(xpath = "//input[@placeholder='Title']")
 	WebElement titlebox;

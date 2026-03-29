@@ -41,7 +41,7 @@ public class AdminUsersTest extends Base {
 		String username = ExcelUtility.readStringData(0, 0, "LoginPage");
 		String password = ExcelUtility.readStringData(0, 1, "LoginPage");
 		LoginPage login = new LoginPage(driver);
-		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password);
+		login.enterUserNameOnUserNameField(username).enterPasswordOnPasswordField(password) ;
 		homepage = login.clickOnSigninButton();
 		adminuserspage=homepage.clickOnAdminUsersMoreInfoButton();
 		FakerUtility faker = new FakerUtility();
